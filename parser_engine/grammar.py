@@ -50,11 +50,13 @@ class Grammar:
                 self.productions[lhs].append(current_alt)
 
         # Clasificación automática de terminales y no terminales
-        # - Las letras mayúsculas de una sola letra son No Terminales.
+        # - Los no terminales son los que aparecen en la cabeza de producciones
+        #   (grammar.non_terminals, ya registrados arriba).
         # - La 'e' representa épsilon (ε) y no se cuenta como terminal físico.
-        # - El resto de caracteres son Terminales.
+        # - El resto de simbolos que aparecen en los cuerpos y no son no
+        #   terminales son Terminales.
         for lhs, alts in self.productions.items():
             for alt in alts:
                 for symbol in alt:
-                    if symbol != 'e' and not (symbol.isupper() and len(symbol) == 1):
+                    if symbol != 'e' and symbol not in self.non_terminals:
                         self.terminals.add(symbol) 
