@@ -1,0 +1,5 @@
+4
+S -> L
+L -> [ M ] | e
+M -> id R | e
+R -> ; id R | e
