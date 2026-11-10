@@ -1,4 +1,0 @@
-4
-S -> a A b | b B a
-A -> c | e
-B -> d | e

@@ -1,3 +1,0 @@
-2
-S -> i E t S | i E t S else S | a
-E -> b
