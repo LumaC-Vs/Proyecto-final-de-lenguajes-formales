@@ -15,7 +15,7 @@ Formato del archivo de gramatica:
     Lineas siguientes: <no_terminal> -> <alternativas>
     Ejemplo:
         5
-        S -> T E'
+        E -> T E'
         E' -> + T E' | e
         T -> F T'
         T' -> * F T' | e

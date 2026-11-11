@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Ítem 3 — SDD{% endblock %}
+
+{% block content %}
+<section class="module">
+    <div class="container">
+        <div class="module-header">
+            <h2>Ítem 3 — Definición Dirigida por Sintaxis (SDD)</h2>
+            <p class="subtitle">Árbol sintáctico, árbol anotado, grafo de dependencias, orden topológico, evaluación de atributos y detección de ciclos.</p>
+        </div>
+
+        <div class="controls">
+            <label>Cadena de entrada: <input type="text" id="sdd-input" value="a;b"></label>
+            <button id="btn-run-sdd" class="btn btn-primary">Ejecutar SDD</button>
+        </div>
+
+        <div id="sdd-loading" class="loading" style="display:none;">Evaluando...</div>
+        <div id="sdd-error" class="alert alert-error" style="display:none;"></div>
+        <div id="sdd-alert" class="alert alert-info" style="display:none;"></div>
+
+        <div id="sdd-result" class="result-panel" style="display:none;">
+            <div class="result-section">
+                <h3>Gramática del SDD</h3>
+                <table class="data-table" id="sdd-grammar-table">
+                    <thead><tr><th>Producción</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="result-section">
+                <h3>Tabla de Atributos</h3>
+                <table class="data-table">
+                    <thead><tr><th>Símbolo</th><th>Atributo</th><th>Tipo</th><th>Naturaleza</th><th>Significado</th></tr></thead>
+                    <tbody id="sdd-attr-body"></tbody>
+                </table>
+            </div>
+
+            <div class="result-section">
+                <h3>Reglas Semánticas</h3>
+                <div id="sdd-rules"></div>
+            </div>
+
+            <div class="two-col">
+                <div class="result-section">
+                    <h3>Árbol Sintáctico</h3>
+                    <div class="diagram-wrapper" id="sdd-tree"></div>
+                </div>
+                <div class="result-section">
+                    <h3>Árbol Sintáctico Anotado</h3>
+                    <div class="diagram-wrapper" id="sdd-tree-annotated"></div>
+                </div>
+            </div>
+
+            <div class="result-section">
+                <h3>Grafo de Dependencias</h3>
+                <div class="diagram-wrapper" id="sdd-graph"></div>
+                <p class="note">Aristas: de atributo usado → atributo definido. Nodos en azul = sintetizados, naranja = heredados, verde = léxico.</p>
+            </div>
+
+            <div class="result-section">
+                <h3>Orden Topológico</h3>
+                <div class="topo-list" id="sdd-topo"></div>
+            </div>
+
+            <div class="result-section">
+                <h3>Evaluación de Atributos (traza)</h3>
+                <table class="data-table">
+                    <thead><tr><th>Paso</th><th>Atributo</th><th>Nodo</th><th>Valores usados</th><th>Resultado</th></tr></thead>
+                    <tbody id="sdd-trace-body"></tbody>
+                </table>
+            </div>
+
+            <div class="result-section">
+                <h3>Resultado final</h3>
+                <div class="result-box" id="sdd-final"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const PAGE = 'item3';
+</script>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Ítem 2 — LL(1) y SLR(1){% endblock %}
+
+{% block content %}
+<section class="module">
+    <div class="container">
+        <div class="module-header">
+            <h2>Ítem 2 — Parsers LL(1) y SLR(1)</h2>
+            <p class="subtitle">Tabla predictiva, estados LR(0), CLOSURE/GOTO, tablas ACTION y GOTO, y simulaciones paso a paso.</p>
+        </div>
+
+        <div class="controls">
+            <button id="btn-load-ll1" class="btn btn-primary">Calcular LL(1)</button>
+            <button id="btn-load-slr1" class="btn btn-secondary">Calcular SLR(1)</button>
+        </div>
+
+        <div id="i2-loading" class="loading" style="display:none;">Procesando...</div>
+        <div id="i2-error" class="alert alert-error" style="display:none;"></div>
+
+        <!-- LL(1) -->
+        <div id="i2-ll1" class="result-panel" style="display:none;">
+            <h3>Parser LL(1)</h3>
+            <div class="two-col">
+                <div>
+                    <h4>Clasificación</h4>
+                    <div class="kv-grid" id="ll1-clasificacion"></div>
+                </div>
+                <div>
+                    <h4>Conflictos</h4>
+                    <div id="ll1-conflictos"></div>
+                </div>
+            </div>
+
+            <h4>Tabla predictiva LL(1)</h4>
+            <div class="table-wrapper" id="ll1-tabla-wrapper"></div>
+
+            <h4>Simulaci&oacute;n LL(1)</h4>
+            <div class="sim-controls">
+                <label>Cadena de entrada: <input type="text" id="ll1-input" value="id+id"></label>
+                <button id="btn-sim-ll1" class="btn btn-primary">Analizar</button>
+            </div>
+            <div id="ll1-sim-result" class="sim-result" style="display:none;"></div>
+        </div>
+
+        <!-- SLR(1) -->
+        <div id="i2-slr1" class="result-panel" style="display:none;">
+            <h3>Parser SLR(1)</h3>
+            <div class="two-col">
+                <div>
+                    <h4>Clasificación</h4>
+                    <div class="kv-grid" id="slr1-clasificacion"></div>
+                </div>
+                <div>
+                    <h4>Conflictos</h4>
+                    <div id="slr1-conflictos"></div>
+                </div>
+            </div>
+
+            <h4>Símbolo inicial aumentado: <span id="slr1-aug-start"></span></h4>
+
+            <h4>Ítems LR(0) y transiciones (estados)</h4>
+            <div class="table-wrapper" id="slr1-estados-wrapper"></div>
+
+            <h4>Tabla ACTION y GOTO</h4>
+            <div class="table-wrapper" id="slr1-tablas-wrapper"></div>
+
+            <div class="sim-controls">
+                <label>Cadena de entrada: <input type="text" id="slr1-input" value="id+id"></label>
+                <button id="btn-sim-slr1" class="btn btn-primary">Analizar</button>
+            </div>
+            <div id="slr1-sim-result" class="sim-result" style="display:none;"></div>
+
+            <h4>Autómata LR(0)</h4>
+            <div class="diagram-wrapper" id="slr1-automata"></div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const PAGE = 'item2';
+</script>
+{% endblock %}

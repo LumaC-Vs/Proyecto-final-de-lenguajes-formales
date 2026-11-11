@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Ítem 1 — FIRST y FOLLOW{% endblock %}
+
+{% block content %}
+<section class="module">
+    <div class="container">
+        <div class="module-header">
+            <h2>Ítem 1 — Conjuntos FIRST y FOLLOW</h2>
+            <p class="subtitle">Ejecuci&oacute;n real del algoritmo sobre la gramática seleccionada.</p>
+        </div>
+
+        <div class="controls">
+            <button id="btn-load-ff" class="btn btn-primary">Calcular FIRST y FOLLOW</button>
+        </div>
+
+        <div id="ff-loading" class="loading" style="display:none;">Calculando...</div>
+        <div id="ff-error" class="alert alert-error" style="display:none;"></div>
+
+        <div id="ff-result" class="result-panel" style="display:none;">
+            <div class="result-section">
+                <h3>Gramática seleccionada</h3>
+                <div class="grammar-summary" id="ff-grammar-summary"></div>
+                <table class="data-table">
+                    <thead><tr><th>No terminal</th><th>Producciones</th></tr></thead>
+                    <tbody id="ff-producciones-body"></tbody>
+                </table>
+            </div>
+
+            <div class="result-section">
+                <h3>Tabla FIRST</h3>
+                <table class="data-table">
+                    <thead><tr><th>No terminal</th><th>Conjunto FIRST</th></tr></thead>
+                    <tbody id="ff-first-body"></tbody>
+                </table>
+            </div>
+
+            <div class="result-section">
+                <h3>Tabla FOLLOW</h3>
+                <table class="data-table">
+                    <thead><tr><th>No terminal</th><th>Conjunto FOLLOW</th></tr></thead>
+                    <tbody id="ff-follow-body"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+const PAGE = 'item1';
+</script>
+{% endblock %}

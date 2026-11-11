@@ -8,7 +8,7 @@ class Grammar:
         self.non_terminals = set()  # Conjunto de no terminales (Letras mayúsculas)
         self.terminals = set()      # Conjunto de terminales (Símbolos, dígitos, minúsculas)
         self.productions = {}       # Diccionario de producciones: { 'A': [['B', 'c'], ['e']] }
-        self.start_symbol = 'S'     # Por regla del proyecto, 'S' es siempre el símbolo inicial
+        self.start_symbol = None    # Se infiere de la primera producción del archivo
         self._parse_input(raw_lines)
 
     def _parse_input(self, lines):
@@ -37,6 +37,9 @@ class Grammar:
             if lhs not in self.productions:
                 self.productions[lhs] = []
                 self.non_terminals.add(lhs)
+                # El simbolo inicial es la cabeza de la primera produccion del archivo
+                if self.start_symbol is None:
+                    self.start_symbol = lhs
             
             # Procesar las alternativas de derivación (pueden venir separadas por '|' o espacios)
             current_alt = []

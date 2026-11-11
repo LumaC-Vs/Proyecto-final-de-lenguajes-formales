@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Inicio — Proyecto Lenguajes Formales{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container">
+        <h2>Bienvenido a la demostraci&oacute;n del proyecto</h2>
+        <p>Esta aplicación permite visualizar de forma interactiva los resultados de los tres ítems del proyecto de Lenguajes Formales y Compiladores, ejecutando los algoritmos originales sobre las gramáticas almacenadas en la carpeta <code>gramaticas/</code> del repositorio.</p>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3>Ítem 1</h3>
+                <p>Conjuntos <strong>FIRST</strong> y <strong>FOLLOW</strong> de cada no terminal, con tabla completa y tratamientos de ε y $.</p>
+                <a href="{{ url_for('item1') }}" class="btn">Ir a Ítem 1</a>
+            </div>
+            <div class="feature-card">
+                <h3>Ítem 2</h3>
+                <p>Parsers <strong>LL(1)</strong> y <strong>SLR(1)</strong>: tabla predictiva, estados LR(0), CLOSURE/GOTO, tablas ACTION y GOTO, y simulaciones paso a paso.</p>
+                <a href="{{ url_for('item2') }}" class="btn">Ir a Ítem 2</a>
+            </div>
+            <div class="feature-card">
+                <h3>Ítem 3</h3>
+                <p>Definición dirigida por sintaxis (SDD): árbol sintáctico, árbol anotado, grafo de dependencias, orden topológico, evaluación de atributos y detección de ciclos.</p>
+                <a href="{{ url_for('item3') }}" class="btn">Ir a Ítem 3</a>
+            </div>
+        </div>
+        <div class="alert alert-info mt-4">
+            <strong>Cómo funciona:</strong> al entrar a cualquier m&oacute;dulo, se cargan automáticamente las gramáticas disponibles en la carpeta <code>gramaticas/</code>. Selecciona una desde el men&uacute; desplegable y ejecuta los algoritmos. No es necesario subir archivos manualmente.
+        </div>
+    </div>
+</section>
+{% endblock %}
