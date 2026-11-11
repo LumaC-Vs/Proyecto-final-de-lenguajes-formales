@@ -625,7 +625,7 @@ function renderArbol(tree, containerId, annotated) {
     const aristas = [];
     function dfs(nodo, x, y, nivel, indiceX) {
         const id = 'n' + (nodos.length);
-        nodos.push({ id, simbolo: nodo.simbolo, indice: nodo.indice, nivel, x: indiceX * 220, y: nivel * 130, atributos: nodo.attributes || {}, produccion: nodo.production });
+        nodos.push({ id, simbolo: nodo.symbol, indice: nodo.id, nivel, x: indiceX * 220, y: nivel * 130, atributos: nodo.attributes || {}, produccion: nodo.production });
         if (nodo.children && nodo.children.length > 0) {
             const childXs = [];
             nodo.children.forEach((c, ci) => {
