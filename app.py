@@ -30,6 +30,7 @@ import os
 from parser_engine.grammar import Grammar
 from parser_engine.first_follow import compute_first, compute_follow
 from parser_engine import ll1, slr1
+from collections import deque
 
 END = '$'
 

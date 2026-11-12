@@ -19,6 +19,8 @@ Convenciones del repositorio:
   - se genera un simbolo inicial aumentado S' que no colisiona con simbolos existentes
 """
 
+from collections import deque
+
 from parser_engine.grammar import Grammar
 from parser_engine.first_follow import compute_follow
 
@@ -62,6 +64,23 @@ class Item:
         before = ' '.join(self.rhs[:self.dot])
         after = ' '.join(self.rhs[self.dot:])
         return f"[{self.head} -> {before} . {after}]".strip()
+
+
+def symbol_order_by_first_appearance(grammar):
+    """
+    Devuelve una lista ordenada de simbolos (no terminales y terminales)
+    segun su primera aparicion recorriendo grammar.producciones.
+    Esto hace que la numeracion de estados (I0, I1, I2...) sea determinista.
+    """
+    seen = []
+    for head, alts in grammar.productions.items():
+        if head not in seen:
+            seen.append(head)
+        for alt in alts:
+            for sym in alt:
+                if sym != EPSILON and sym not in seen:
+                    seen.append(sym)
+    return seen
 
 
 def _augmented_start_symbol(grammar):
@@ -145,20 +164,15 @@ def canonical_collection(grammar):
     states = [closure({start_item}, grammar)]
     state_index = {states[0]: 0}
 
-    # Todos los símbolos sobre los que puede haber transicion (terminales y no terminales originales)
-    grammar_terminals = set()
-    for alts in grammar.productions.values():
-        for alt in alts:
-            for sym in alt:
-                if sym != EPSILON and sym not in grammar.non_terminals:
-                    grammar_terminals.add(sym)
-    all_symbols = set(grammar.non_terminals) | grammar_terminals
+    # Lista ordenada de simbolos (determinista: primera aparicion en la gramatica)
+    all_symbols = symbol_order_by_first_appearance(grammar)
 
     transitions = {}
-    worklist = [0]
+    # Cola FIFO para descubrir estados en orden de llegada (BFS)
+    worklist = deque([0])
 
     while worklist:
-        i = worklist.pop()
+        i = worklist.popleft()
         for sym in all_symbols:
             g = goto(states[i], sym, grammar)
             if g is None:

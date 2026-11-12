@@ -27,7 +27,7 @@ GRAMS = {
     # Escenario 1: LL(1) y SLR(1) (gramatica de expresiones, Ejemplo 4.28 Aho)
     "expr": [
         "5",
-        "S -> T E'",
+        "E -> T E'",
         "E' -> + T E' | e",
         "T -> F T'",
         "T' -> * F T' | e",
