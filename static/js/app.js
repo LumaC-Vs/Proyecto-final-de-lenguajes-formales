@@ -642,9 +642,19 @@ function renderArbol(tree, containerId, annotated) {
     // Recalcular X basado en posición en el array (inorden aproximado)
     nodos.forEach((n, i) => { n.x = i * 200 + 150; });
 
-    const ancho = 900;
-    const alto = Math.max(200, (Math.max(...nodos.map(n => n.nivel)) + 1) * 140 + 100);
-    let svg = `<svg width="${ancho}" height="${alto}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${ancho} ${alto}">
+    // Calcular dimensiones dinámicas basadas en los extremos reales de los nodos
+    const margen = 80;
+    const xs = nodos.map(n => n.x);
+    const ys = nodos.map(n => n.y);
+    const minX = Math.min(...xs);
+    const maxX = Math.max(...xs);
+    const minY = Math.min(...ys);
+    const maxY = Math.max(...ys);
+    const ancho = Math.max(600, (maxX - minX) + 2 * margen + 120); // +120 por ancho del nodo
+    const alto = Math.max(300, (maxY - minY) + 2 * margen + 60);   // +60 por alto del nodo
+    const vbX = minX - margen;
+    const vbY = minY - margen;
+    let svg = `<svg width="${ancho}" height="${alto}" xmlns="http://www.w3.org/2000/svg" viewBox="${vbX} ${vbY} ${ancho} ${alto}">
         <defs><marker id="arrow-tree" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L0,9 L9,4.5 z" fill="#1f4e79"/></marker></defs>`;
 
     // Aristas

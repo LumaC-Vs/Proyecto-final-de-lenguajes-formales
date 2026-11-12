@@ -9,8 +9,8 @@ from parser_engine.first_follow import compute_first, compute_follow
 # T' -> * F T' | e
 # F -> ( E ) | id
 raw_grammar_input = [
-    "5", # 5 no terminales: S, E', T, T', F
-    "S -> T E'",
+    "5", # 5 no terminales: E, E', T, T', F
+    "E -> T E'",
     "E' -> + T E' | e",
     "T -> F T'",
     "T' -> * F T' | e",
