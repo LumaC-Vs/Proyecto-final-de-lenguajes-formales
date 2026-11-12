@@ -160,13 +160,19 @@ python app.py --grammar gramaticas/gram_expr.txt --clasificar
 # Item 2: LL(1) parser with predictive table
 python app.py --grammar gramaticas/gram_expr.txt --ll1 --table
 
-# Item 2: LL(1) parser step-by-step with input string
+# Item 2: LL(1) parser step-by-step with input string (valid)
 python app.py --grammar gramaticas/gram_expr.txt --input "id+id" --ll1 --step
+
+# Item 2: LL(1) parser step-by-step with input string (invalid)
+python app.py --grammar gramaticas/gram_expr.txt --input "id+" --ll1 --step
 
 # Item 2: SLR(1) parser with ACTION/GOTO tables
 python app.py --grammar gramaticas/gram_expr.txt --slr1 --table
 
-# Item 2: SLR(1) parser step-by-step with input string
+# Item 2: SLR(1) parser step-by-step with input string (valid)
+python app.py --grammar gramaticas/gram_expr.txt --input "id+id" --slr1 --step
+
+# Item 2: SLR(1) parser step-by-step with input string (left recursion)
 python app.py --grammar gramaticas/gram_leftrec.txt --input "id+id+id" --slr1 --step
 
 # Run all automated tests
@@ -279,6 +285,17 @@ Input: `[id;id]`
 
 Expected result: `S.val = [1:id; 2:id]`
 
+**CLI commands for Item 3 (SDD):**
+
+```bash
+# Run the interactive SDD driver
+python sdd_app.py gramaticas/gram_sdd.txt
+# (Type one string per line, use e for epsilon, and press Enter on an empty line to finish).
+
+# Run automated SDD and circularity tests
+python -m tests.test_sdd
+```
+
 The SDD numbers identifiers by their position in the list.
 
 ### Cycle detection
@@ -316,7 +333,7 @@ python test_sets.py
 python test_item2.py
 
 # Item 3: SDD and cycle detection
-python test_sdd.py
+python -m tests.test_sdd
 ```
 
 All tests should pass with result `OK`.
