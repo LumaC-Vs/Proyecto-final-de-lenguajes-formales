@@ -1,5 +1,10 @@
 # Formal Languages and Compilers — Final Project
 
+Integrantes:
+- Luisa Maria Cuervo Prado
+- Sheryl Astrid Murillo Duque
+- Miguel Angel Galeano Vasquez
+
 Web server demonstration integrated with the original project algorithms. Provides interactive visualization of the three required items:
 
 1. **Item 1:** FIRST and FOLLOW sets.
